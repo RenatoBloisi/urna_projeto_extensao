@@ -1,14 +1,21 @@
 package br.com.urnacidada.model;
 
 public class Voto {
+
+    public enum TipoVoto {
+        VALIDO,
+        BRANCO,
+        NULO
+    };
+
     private String numero;
-    private String cargo;
-    private String tipoVoto; //Válido, Branco ou Nulo
+    private Cargo cargo;
+    private TipoVoto tipoVoto; //Válido, Branco ou Nulo
 
     // Construtor
-    public Voto(String numero, String cargo, String tipoVoto) {
-        this.numero = numero;
+    public Voto(Cargo cargo, String numero, TipoVoto tipoVoto) {
         this.cargo = cargo;
+        this.numero = numero;
         this.tipoVoto = tipoVoto;
     }
 
@@ -17,11 +24,11 @@ public class Voto {
         return numero;
     }
 
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
 
-    public String getTipoVoto() {
+    public TipoVoto getTipoVoto() {
         return tipoVoto;
     }
 
@@ -30,11 +37,11 @@ public class Voto {
         this.numero = numero;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
 
-    public void setTipoVoto(String tipoVoto) {
+    public void setTipoVoto(TipoVoto tipoVoto) {
         this.tipoVoto = tipoVoto;
     }
 

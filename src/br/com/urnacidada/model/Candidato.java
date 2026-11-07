@@ -4,10 +4,10 @@ public class Candidato {
     private String nome;
     private String numero;
     private String partido;
-    private String cargo;
+    private Cargo cargo;
 
     // Construtor
-    public Candidato(String nome, String numero, String partido, String cargo) {
+    public Candidato(String nome, String numero, String partido, Cargo cargo) {
         this.nome = nome;
         this.numero = numero;
         this.partido = partido;
@@ -27,7 +27,7 @@ public class Candidato {
         return partido;
     }
 
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
 
@@ -44,7 +44,7 @@ public class Candidato {
         this.partido = partido;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
 
