@@ -1,6 +1,6 @@
 # 🗳️ Urna Cidadã: Simulação Educativa do Voto Eletrônico e Combate à Desinformação
 
-Projeto de extensão acadêmica desenvolvido para a disciplina de **Programação Orientada a Objetos (POO)** na **UniJorge**. O objetivo é simular o funcionamento da urna eletrônica brasileira através de um aplicativo Java (com versão mobile/web responsiva) e promover oficinas educativas sobre desinformação, *fake news* e *deepfakes* para estudantes do Ensino Médio.
+Projeto de extensão acadêmica desenvolvido para a disciplina de **Programação Orientada a Objetos (POO)** no **Centro Universitário Jorge Amado**. O objetivo é simular o funcionamento da urna eletrônica brasileira através de um aplicativo Java (com versão mobile/web responsiva) e promover oficinas educativas sobre desinformação, *fake news* e *deepfakes* para estudantes do Ensino Médio.
 
 ---
 
