@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  TELA 1 — BOAS-VINDAS  (Pessoa 5)
+  Controlador: br.com.urnacidada.view.telas.TelaInicialController
+  Tamanho de referência para a escala responsiva: 1100 x 700 (ver Responsivo.java)
+  Tamanhos e espaçamentos estão em urna-cidada.css (em "em"). Evite fixar px aqui.
+-->
+<BorderPane fx:id="raiz" styleClass="urna-tela,fundo-claro"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="br.com.urnacidada.view.telas.TelaInicialController">
+   <stylesheets>
+      <URL value="@../css/urna-cidada.css" />
+   </stylesheets>
+
+   <!-- Faixa decorativa verde / amarelo / azul -->
+   <top>
+      <HBox styleClass="faixa-topo">
+         <Region styleClass="faixa-verde" HBox.hgrow="ALWAYS" />
+         <Region styleClass="faixa-amarela" HBox.hgrow="ALWAYS" />
+         <Region styleClass="faixa-azul" HBox.hgrow="ALWAYS" />
+      </HBox>
+   </top>
+
+   <center>
+      <HBox alignment="CENTER" styleClass="layout-colunas">
+
+         <!-- ============ COLUNA ESQUERDA: ilustração + orientações ============ -->
+         <VBox alignment="TOP_CENTER" styleClass="coluna-esquerda">
+
+            <!-- Ilustração da urna feita só com formas (substituível por imagem) -->
+            <HBox alignment="CENTER" styleClass="urna-ilustracao-corpo"
+                  accessibleText="Ilustração de uma urna eletrônica">
+               <VBox styleClass="urna-ilustracao-visor">
+                  <Region styleClass="urna-ilustracao-visor-faixa" />
+                  <VBox styleClass="urna-ilustracao-visor-conteudo">
+                     <Region styleClass="urna-ilustracao-linha" />
+                     <Region styleClass="urna-ilustracao-linha" />
+                     <Region styleClass="urna-ilustracao-linha" />
+                  </VBox>
+               </VBox>
+               <VBox alignment="CENTER" styleClass="urna-ilustracao-teclado">
+                  <TilePane prefColumns="3" styleClass="urna-ilustracao-grade">
+                     <Region styleClass="urna-ilustracao-tecla" />
+                     <Region styleClass="urna-ilustracao-tecla" />
+                     <Region styleClass="urna-ilustracao-tecla" />
+                     <Region styleClass="urna-ilustracao-tecla" />
+                     <Region styleClass="urna-ilustracao-tecla" />
+                     <Region styleClass="urna-ilustracao-tecla" />
+                     <Region styleClass="urna-ilustracao-tecla" />
+                     <Region styleClass="urna-ilustracao-tecla" />
+                     <Region styleClass="urna-ilustracao-tecla" />
+                  </TilePane>
+                  <HBox alignment="CENTER" styleClass="urna-ilustracao-acoes">
+                     <Region styleClass="urna-ilustracao-acao,acao-branco" />
+                     <Region styleClass="urna-ilustracao-acao,acao-corrige" />
+                     <Region styleClass="urna-ilustracao-acao,acao-confirma" />
+                  </HBox>
+               </VBox>
+            </HBox>
+
+            <!-- Orientações básicas -->
+            <VBox styleClass="cartao,bloco-orientacoes">
+               <Label styleClass="titulo-secao" text="Como votar" />
+               <HBox alignment="TOP_LEFT" styleClass="linha-passo">
+                  <Label styleClass="passo-numero" text="1" />
+                  <Label maxWidth="Infinity" styleClass="texto" text="Digite o número do candidato no teclado da urna." wrapText="true" HBox.hgrow="ALWAYS" />
+               </HBox>
+               <HBox alignment="TOP_LEFT" styleClass="linha-passo">
+                  <Label styleClass="passo-numero" text="2" />
+                  <Label maxWidth="Infinity" styleClass="texto" text="Confira o nome, o partido e a foto que aparecem na tela." wrapText="true" HBox.hgrow="ALWAYS" />
+               </HBox>
+               <HBox alignment="TOP_LEFT" styleClass="linha-passo">
+                  <Label styleClass="passo-numero" text="3" />
+                  <Label maxWidth="Infinity" styleClass="texto" text="Estando tudo certo, aperte CONFIRMA." wrapText="true" HBox.hgrow="ALWAYS" />
+               </HBox>
+               <HBox alignment="TOP_LEFT" styleClass="linha-passo">
+                  <Label styleClass="passo-numero" text="4" />
+                  <Label maxWidth="Infinity" styleClass="texto" text="Para refazer a escolha, aperte CORRIGE. Para não escolher ninguém, aperte BRANCO." wrapText="true" HBox.hgrow="ALWAYS" />
+               </HBox>
+            </VBox>
+         </VBox>
+
+         <!-- ============ COLUNA DIREITA: título, cargos, aviso e botão ============ -->
+         <VBox alignment="CENTER_LEFT" styleClass="coluna-direita" HBox.hgrow="ALWAYS">
+            <Label fx:id="lblTitulo" styleClass="titulo-principal" text="URNA CIDADÃ" />
+            <Label fx:id="lblSubtitulo" styleClass="subtitulo" text="Simulação Educativa do Voto Eletrônico" wrapText="true" />
+
+            <Label fx:id="lblBoasVindas" maxWidth="Infinity" styleClass="texto"
+                   text="Bem-vindo(a)! Esta simulação mostra, passo a passo, como funciona a votação em uma urna eletrônica."
+                   wrapText="true" />
+
+            <VBox styleClass="bloco-cargos">
+               <Label styleClass="titulo-secao" text="Você votará em 3 cargos, nesta ordem:" />
+               <HBox styleClass="linha-cargos">
+                  <!-- Os textos abaixo são só pré-visualização: o controlador os substitui
+                       pelos valores reais do enum Cargo (descrição e quantidade de dígitos). -->
+                  <HBox alignment="CENTER_LEFT" maxWidth="Infinity" styleClass="cargo-item" HBox.hgrow="ALWAYS">
+                     <Label styleClass="cargo-ordem" text="1" />
+                     <VBox>
+                        <Label fx:id="lblCargo1" maxWidth="Infinity" styleClass="cargo-nome" text="Deputado Federal" wrapText="true" />
+                        <Label fx:id="lblDigitos1" styleClass="texto-suave" text="4 dígitos" />
+                     </VBox>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxWidth="Infinity" styleClass="cargo-item" HBox.hgrow="ALWAYS">
+                     <Label styleClass="cargo-ordem" text="2" />
+                     <VBox>
+                        <Label fx:id="lblCargo2" maxWidth="Infinity" styleClass="cargo-nome" text="Deputado Estadual" wrapText="true" />
+                        <Label fx:id="lblDigitos2" styleClass="texto-suave" text="5 dígitos" />
+                     </VBox>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxWidth="Infinity" styleClass="cargo-item" HBox.hgrow="ALWAYS">
+                     <Label styleClass="cargo-ordem" text="3" />
+                     <VBox>
+                        <Label fx:id="lblCargo3" maxWidth="Infinity" styleClass="cargo-nome" text="Presidente" wrapText="true" />
+                        <Label fx:id="lblDigitos3" styleClass="texto-suave" text="2 dígitos" />
+                     </VBox>
+                  </HBox>
+               </HBox>
+            </VBox>
+
+            <!-- Aviso: candidatos fictícios / votação educativa -->
+            <HBox alignment="CENTER_LEFT" styleClass="aviso-box">
+               <Label styleClass="aviso-icone" text="!" />
+               <Label fx:id="lblAviso" maxWidth="Infinity" styleClass="texto"
+                      text="Atenção: todos os candidatos e partidos são fictícios. Esta votação é apenas educativa e não tem validade eleitoral."
+                      wrapText="true" HBox.hgrow="ALWAYS" />
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT">
+               <Button fx:id="btnIniciar" defaultButton="true" mnemonicParsing="false"
+                       onAction="#aoClicarIniciar" styleClass="botao-primario"
+                       text="INICIAR VOTAÇÃO" accessibleText="Iniciar votação" />
+            </HBox>
+         </VBox>
+      </HBox>
+   </center>
+</BorderPane>

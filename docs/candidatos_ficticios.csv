@@ -1,0 +1,17 @@
+cargo;numero;nome;partido
+DEPUTADO_FEDERAL;2102;Batman;PSG - Partido da Segurança de Gotham
+DEPUTADO_FEDERAL;2202;Thor;PTR - Partido do Trovão Real
+DEPUTADO_FEDERAL;2203;Pantera Negra;PWI - Partido de Wakanda e Inovação
+DEPUTADO_FEDERAL;2204;Doutor Estranho;PAM - Partido das Artes Místicas
+DEPUTADO_FEDERAL;2205;Mulher-Maravilha;PHE - Partido da Harmonia e Equidade
+DEPUTADO_FEDERAL;2206;Laterna Verde;PLE - Partido da Luz e Esperança
+DEPUTADO_ESTADUAL;15123;Homem-Aranha;PTA - Partido de Teia e Ação
+DEPUTADO_ESTADUAL;15224;Viúva-Negra;PSE - Partido da Estratégia Especial
+DEPUTADO_ESTADUAL;15335;Flash;PVM - Partido da Velocidade em Movimento
+DEPUTADO_ESTADUAL;15446;Wanda Maximoff;PCM - Partido do Caos Místico
+DEPUTADO_ESTADUAL;15557;Robin;PJV - Partido da Justiça Verde
+DEPUTADO_ESTADUAL;15668;Capitã Marvel;PEL - Partido da Energia e Luz
+PRESIDENTE;11;Capitão Pátria;PUC - Partido da União e Coragem
+PRESIDENTE;27;Capitão América;PDL - Partido da Democracia e Liberdade
+PRESIDENTE;33;Titã Cósmico;PIT - Partido da Inovação e Tecnologia
+PRESIDENTE;44;Aquaman;PMO - Partido dos Mares e Oceanos

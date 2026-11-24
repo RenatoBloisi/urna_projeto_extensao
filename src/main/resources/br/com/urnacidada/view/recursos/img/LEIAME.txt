@@ -1,0 +1,15 @@
+IMAGENS DA URNA CIDADA
+======================
+
+candidatos/   Fotos dos candidatos (opcional).
+              Nome do arquivo = numero eleitoral do candidato.
+              Exemplos:  candidatos/1234.png   candidatos/12345.jpg   candidatos/42.png
+              Formatos aceitos: .png, .jpg, .jpeg
+              Proporcao recomendada: retrato 4:5 (ex.: 400 x 500 px).
+              Se NAO houver arquivo para o numero, a tela mostra um avatar com as iniciais.
+
+Observacoes
+- A ilustracao da urna na Tela Inicial e feita apenas com formas CSS (sem imagem).
+  Para usar uma imagem no lugar, troque o bloco "urna-ilustracao-corpo" em TelaInicial.fxml
+  por um <ImageView> apontando para um arquivo desta pasta.
+- Depois de adicionar arquivos, rode "mvn clean compile" para o Maven copia-los para a pasta de saida.

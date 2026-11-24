@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  TELA 2 — DADOS DO CANDIDATO  (Pessoa 5)
+  Controlador: br.com.urnacidada.view.telas.DadosCandidatoController
+  Pensada para ser colocada DENTRO do visor da urna (interface da Pessoa 4).
+  Tamanho de referência para a escala responsiva: 760 x 500.
+
+  IMPORTANTE: os textos "Nome do Candidato", "NC", dígitos 1 2 3 4 etc. são apenas
+  PRÉ-VISUALIZAÇÃO para o Scene Builder. Em tempo de execução o controlador os
+  substitui pelos dados reais (ver DadosCandidatoController.setCandidato).
+-->
+<BorderPane fx:id="raiz" styleClass="urna-tela,fundo-claro"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="br.com.urnacidada.view.telas.DadosCandidatoController">
+   <stylesheets>
+      <URL value="@../css/urna-cidada.css" />
+   </stylesheets>
+
+   <top>
+      <VBox>
+         <HBox styleClass="faixa-topo">
+            <Region styleClass="faixa-verde" HBox.hgrow="ALWAYS" />
+            <Region styleClass="faixa-amarela" HBox.hgrow="ALWAYS" />
+            <Region styleClass="faixa-azul" HBox.hgrow="ALWAYS" />
+         </HBox>
+         <VBox styleClass="dados-cabecalho">
+            <Label styleClass="contexto-topo" text="URNA CIDADÃ  •  SIMULAÇÃO EDUCATIVA" />
+            <Region styleClass="linha-divisoria" />
+         </VBox>
+      </VBox>
+   </top>
+
+   <center>
+      <VBox styleClass="dados-conteudo">
+         <Label styleClass="seu-voto-para" text="SEU VOTO PARA" />
+         <Label fx:id="lblCargo" maxWidth="Infinity" styleClass="cargo-destaque" text="Cargo disputado" wrapText="true" />
+
+         <HBox styleClass="dados-corpo" VBox.vgrow="ALWAYS">
+            <!-- Campos de texto -->
+            <VBox styleClass="dados-campos" HBox.hgrow="ALWAYS">
+               <VBox styleClass="campo">
+                  <Label styleClass="rotulo-campo" text="NÚMERO" />
+                  <HBox fx:id="boxNumero" alignment="CENTER_LEFT" styleClass="caixas-numero">
+                     <Label styleClass="digito-caixa" text="1" />
+                     <Label styleClass="digito-caixa" text="2" />
+                     <Label styleClass="digito-caixa" text="3" />
+                     <Label styleClass="digito-caixa" text="4" />
+                  </HBox>
+               </VBox>
+               <VBox styleClass="campo">
+                  <Label styleClass="rotulo-campo" text="NOME" />
+                  <Label fx:id="lblNome" maxWidth="Infinity" styleClass="valor-nome" text="Nome do Candidato" wrapText="true" />
+               </VBox>
+               <VBox styleClass="campo">
+                  <Label styleClass="rotulo-campo" text="PARTIDO" />
+                  <Label fx:id="lblPartido" maxWidth="Infinity" styleClass="valor-partido" text="Partido Fictício" wrapText="true" />
+               </VBox>
+            </VBox>
+
+            <!-- Foto (ou avatar com iniciais quando não há foto) -->
+            <VBox alignment="TOP_CENTER" styleClass="dados-foto">
+               <StackPane fx:id="fotoMoldura" styleClass="foto-moldura"
+                          accessibleText="Foto do candidato">
+                  <VBox fx:id="boxPlaceholder" alignment="CENTER" styleClass="foto-placeholder">
+                     <Label fx:id="lblIniciais" styleClass="foto-avatar" text="NC" />
+                     <Label styleClass="foto-legenda" text="SEM FOTO" />
+                  </VBox>
+                  <ImageView fx:id="imgFoto" pickOnBounds="true" preserveRatio="true" />
+               </StackPane>
+               <Label fx:id="lblLegendaFoto" styleClass="foto-legenda" text="CANDIDATO(A) FICTÍCIO(A)" />
+            </VBox>
+         </HBox>
+      </VBox>
+   </center>
+
+   <bottom>
+      <VBox styleClass="dados-rodape">
+         <HBox alignment="CENTER_LEFT" styleClass="orientacao-box">
+            <Label fx:id="lblOrientacao" maxWidth="Infinity" styleClass="texto"
+                   text="Confira os dados do candidato. Se estiverem corretos, aperte CONFIRMA. Para escolher outro número, aperte CORRIGE."
+                   wrapText="true" HBox.hgrow="ALWAYS" />
+         </HBox>
+      </VBox>
+   </bottom>
+</BorderPane>

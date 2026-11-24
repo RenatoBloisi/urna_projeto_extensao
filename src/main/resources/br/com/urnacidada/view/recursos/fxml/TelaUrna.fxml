@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  URNA PRINCIPAL  (Pessoa 4: janela da urna, teclado numérico, BRANCO / CORRIGE / CONFIRMA e área de digitação)
+  Controlador: br.com.urnacidada.view.telas.TelaUrnaController
+  Tamanho de referência para a escala responsiva: 1100 x 660.
+
+  O VISOR (StackPane fx:id="visor") recebe, em tempo de execução, o PainelApresentacao da Pessoa 5
+  (ficha do candidato, mensagens e tela FIM) POR CIMA da área de digitação.
+  Os textos "Deputado Federal", "ETAPA 1 DE 3" etc. são só pré-visualização para o Scene Builder.
+-->
+
+<BorderPane fx:id="raiz" focusTraversable="true" styleClass="urna-tela,fundo-claro" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.urnacidada.view.telas.TelaUrnaController">
+   <stylesheets>
+      <URL value="@../css/urna-cidada.css" />
+   </stylesheets>
+
+   <top>
+      <HBox styleClass="faixa-topo">
+         <Region styleClass="faixa-verde" HBox.hgrow="ALWAYS" />
+         <Region styleClass="faixa-amarela" HBox.hgrow="ALWAYS" />
+         <Region styleClass="faixa-azul" HBox.hgrow="ALWAYS" />
+      </HBox>
+   </top>
+
+   <center>
+      <StackPane styleClass="urna-area">
+         <HBox styleClass="urna-corpo">
+
+            <!-- ============ VISOR (área de digitação + camadas da Pessoa 5) ============ -->
+            <StackPane fx:id="visor" styleClass="urna-visor" HBox.hgrow="ALWAYS">
+               <VBox fx:id="boxDigitacao" styleClass="digitacao">
+                  <Label fx:id="lblEtapa" styleClass="contexto-topo" text="ETAPA 1 DE 3" />
+                  <Region styleClass="linha-divisoria" />
+                  <Label styleClass="seu-voto-para" text="SEU VOTO PARA" />
+                  <Label fx:id="lblCargoAtual" maxWidth="Infinity" styleClass="cargo-destaque" text="Deputado Federal" wrapText="true" />
+                  <VBox styleClass="campo,campo-numero">
+                     <Label styleClass="rotulo-campo" text="NÚMERO" />
+                     <HBox fx:id="boxDigitos" alignment="CENTER_LEFT" styleClass="caixas-numero">
+                        <Label styleClass="digito-caixa" text="" />
+                        <Label styleClass="digito-caixa" text="" />
+                        <Label styleClass="digito-caixa" text="" />
+                        <Label styleClass="digito-caixa" text="" />
+                     </HBox>
+                  </VBox>
+                  <Label fx:id="lblBranco" styleClass="aviso-branco" text="VOTO EM BRANCO" />
+                  <Label fx:id="lblDica" maxWidth="Infinity" styleClass="texto" text="Digite o número do candidato." wrapText="true" />
+                  <Region VBox.vgrow="ALWAYS" />
+                  <Region styleClass="linha-divisoria" />
+                  <Label fx:id="lblRodape" maxWidth="Infinity" styleClass="texto-suave" text="Aperte a tecla: CONFIRMA para confirmar este voto. CORRIGE para reiniciar este voto." wrapText="true" />
+               </VBox>
+            </StackPane>
+
+            <!-- ============ TECLADO ============ -->
+            <VBox alignment="TOP_CENTER" styleClass="urna-teclado-painel">
+               <HBox alignment="CENTER" styleClass="teclado-cabecalho">
+                  <Label styleClass="teclado-estrela" text="★" />
+                  <Label styleClass="teclado-titulo" text="URNA CIDADÃ" />
+               </HBox>
+
+               <GridPane alignment="CENTER" styleClass="teclado-grade">
+               <Button accessibleText="Tecla 1" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="1" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+               <Button accessibleText="Tecla 2" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+               <Button accessibleText="Tecla 3" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="3" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+               <Button accessibleText="Tecla 4" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="4" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+               <Button accessibleText="Tecla 5" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               <Button accessibleText="Tecla 6" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+               <Button accessibleText="Tecla 7" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="7" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+               <Button accessibleText="Tecla 8" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <Button accessibleText="Tecla 9" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <Button accessibleText="Tecla 0" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarTecla" styleClass="tecla-numerica" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <columnConstraints>
+                     <ColumnConstraints />
+                     <ColumnConstraints />
+                     <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                  </rowConstraints>
+               </GridPane>
+
+               <Region VBox.vgrow="ALWAYS" />
+
+               <HBox alignment="CENTER" styleClass="teclado-acoes">
+                  <Button accessibleText="Voto em branco" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarBranco" styleClass="tecla-acao,tecla-branco" text="BRANCO" />
+                  <Button accessibleText="Corrigir" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarCorrige" style="-fx-background-color: #FF8C00;" styleClass="tecla-acao,tecla-corrige" text="CORRIGE" />
+                  <Button accessibleText="Confirmar voto" focusTraversable="false" mnemonicParsing="false" onAction="#aoClicarConfirma" styleClass="tecla-acao,tecla-confirma" text="CONFIRMA" />
+               </HBox>
+            </VBox>
+         </HBox>
+      </StackPane>
+   </center>
+</BorderPane>

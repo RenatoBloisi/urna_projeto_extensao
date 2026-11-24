@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  TELA 3 — MENSAGENS E AVISOS  (Pessoa 5)
+  Controlador: br.com.urnacidada.view.telas.MensagemController
+
+  Funciona como uma CAMADA (overlay) que se sobrepõe ao conteúdo da tela,
+  dentro do mesmo StackPane. NÃO abre uma janela nova.
+  O fundo escuro semitransparente bloqueia cliques no que está atrás.
+
+  No Scene Builder ela aparece visível para facilitar a edição; o controlador
+  a esconde na inicialização (ver MensagemController.initialize).
+  Todos os textos aqui são apenas pré-visualização (são trocados em tempo de execução).
+-->
+<StackPane fx:id="raiz" alignment="CENTER" styleClass="urna-tela,mensagem-overlay"
+           xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="br.com.urnacidada.view.telas.MensagemController">
+   <stylesheets>
+      <URL value="@../css/urna-cidada.css" />
+   </stylesheets>
+
+   <VBox fx:id="cartao" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+         styleClass="mensagem-cartao,msg-informacao">
+      <Label fx:id="lblIcone" styleClass="mensagem-icone" text="i" />
+      <Label fx:id="lblTitulo" alignment="CENTER" maxWidth="Infinity" styleClass="mensagem-titulo" text="Informação" />
+      <Label fx:id="lblTexto" alignment="CENTER" maxWidth="Infinity" styleClass="mensagem-texto"
+             text="Texto da mensagem aparece aqui." wrapText="true" />
+      <HBox fx:id="boxBotoes" alignment="CENTER" styleClass="mensagem-botoes">
+         <Button fx:id="btnSecundario" mnemonicParsing="false" onAction="#aoClicarSecundario"
+                 styleClass="botao-secundario" text="NÃO" />
+         <Button fx:id="btnPrimario" mnemonicParsing="false" onAction="#aoClicarPrimario"
+                 styleClass="botao-primario" text="OK" />
+      </HBox>
+   </VBox>
+</StackPane>

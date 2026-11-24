@@ -17,31 +17,44 @@ O desenvolvimento do simulador eleitoral foi estruturado em seis etapas principa
 
 ---
 
+## ▶️ Como Executar
+
+Requisitos: **JDK 17** e **Maven 3.8+** (`java -version` deve mostrar 17).
+
+```bash
+mvn javafx:run                 # abre a urna (usa o Firebase)
+URNA_MODO=local mvn javafx:run # abre a urna sem Firebase (candidatos fixos, votos só em memória)
+mvn compile exec:java          # cadastra os 16 candidatos no Firestore (uma vez)
+```
+
+No Windows (PowerShell): `$env:URNA_MODO="local"; mvn javafx:run`.
+
+Configuração do Firebase (chave da conta de serviço, regras, coleções): **[`docs/CONFIGURAR_FIREBASE.md`](docs/CONFIGURAR_FIREBASE.md)**.
+Guia da interface JavaFX: [`docs/GUIA_DA_INTERFACE.md`](docs/GUIA_DA_INTERFACE.md).
+
+---
+
 ## 📁 Estrutura do Projeto
 
-O código-fonte está organizado seguindo o padrão de arquitetura em camadas (**MVC - Model-View-Controller**) e modularizado em Java:
+Projeto **Maven (Java 17 + JavaFX 17 + Firebase Admin SDK)**, organizado em camadas (**MVC**):
 
 ```text
 urna_projeto_extensao/
-├── src/                                  # Diretório raiz dos códigos-fonte
-│   ├── module-info.java                  # Declarações do módulo Java e dependências visuais
-│   └── br/
-│       └── com/
-│           ├── urnacidada/               # Pacotes principais da Urna Cidadã
-│           │   ├── model/                # Entidades de dados e Enums (Tailane)
-│           │   │   ├── Candidato.java
-│           │   │   ├── Cargo.java
-│           │   │   └── Voto.java
-│           │   ├── controller/           # Regras de negócio e lógica da urna (Renan)
-│           │   │   └── UrnaController.java
-│           │   ├── service/              # Conexão e persistência Firebase (Íris & Renato)
-│           │   │   └── FirebaseService.java
-│           │   └── view/                 # Interfaces JavaFX / Swing e telas mobile (Íris, Renato & Matheus)
-│           │       └── TelaUrna.java
-│           └── unijorge/                 # Módulo de inicialização e layout base (UniJorge)
-│               └── main/
-│                   ├── Main.java         # Classe principal de inicialização (Erickson)
-│                   ├── Organizer.java    # Gerenciador de layouts
-│                   └── Window.java       # Janela principal do sistema
-├── .gitignore                            # Configurações para ignorar arquivos locais/binários
-└── README.md                             # Documentação principal do repositório
+├── pom.xml                               # Dependências (JavaFX, Firebase) e Java 17
+├── src/main/java/br/com/
+│   ├── urnacidada/
+│   │   ├── model/                        # Candidato, Cargo, Voto (Tailane)
+│   │   ├── controller/                   # UrnaController: lógica da votação (Renan)
+│   │   ├── service/                      # FirebaseService e CadastrarCandidatos (Íris & Renato)
+│   │   └── view/                         # Interface JavaFX (Íris, Renato & Matheus)
+│   │       ├── app/                      # Launcher (execute esta) e UrnaCidadaApp
+│   │       ├── integracao/               # Liga a tela ao Firebase (ServicosFirebase) ou ao modo local
+│   │       ├── apresentacao/ · telas/    # Componentes e controladores das telas
+│   └── unijorge/main/                    # Protótipo inicial em Swing (Erickson)
+├── src/main/resources/br/com/urnacidada/view/recursos/   # FXML, CSS e fotos dos candidatos
+├── firebase/                             # Regras do Firestore (firestore.rules)
+├── config/                               # Chave da conta de serviço (NÃO vai para o Git)
+├── docs/                                 # Guias e CSV dos candidatos
+├── firebase.json · .firebaserc           # Projeto Firebase (urna-eletronica-2026)
+└── .gitignore
+```

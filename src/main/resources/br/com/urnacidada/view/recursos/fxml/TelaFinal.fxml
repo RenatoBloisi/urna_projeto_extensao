@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  TELA 4 — ENCERRAMENTO DA VOTAÇÃO  (Pessoa 5)
+  Controlador: br.com.urnacidada.view.telas.TelaFinalController
+  Esta tela NÃO decide quando a votação acabou: ela só é exibida quando o código
+  da urna (Pessoa 2 / 4 / 6) mandar. Ver PainelApresentacao.exibirFim().
+  Tamanho de referência para a escala responsiva: 760 x 500.
+-->
+<BorderPane fx:id="raiz" styleClass="urna-tela,fundo-claro"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="br.com.urnacidada.view.telas.TelaFinalController">
+   <stylesheets>
+      <URL value="@../css/urna-cidada.css" />
+   </stylesheets>
+
+   <top>
+      <HBox styleClass="faixa-topo">
+         <Region styleClass="faixa-verde" HBox.hgrow="ALWAYS" />
+         <Region styleClass="faixa-amarela" HBox.hgrow="ALWAYS" />
+         <Region styleClass="faixa-azul" HBox.hgrow="ALWAYS" />
+      </HBox>
+   </top>
+
+   <center>
+      <VBox alignment="CENTER" styleClass="final-conteudo">
+         <Label fx:id="lblMarca" styleClass="marca-nome" text="URNA CIDADÃ" />
+         <Label fx:id="lblFim" styleClass="palavra-fim" text="FIM" />
+         <Label fx:id="lblMensagem" alignment="CENTER" maxWidth="Infinity" styleClass="mensagem-final"
+                text="Votação concluída." textAlignment="CENTER" wrapText="true" />
+         <Label fx:id="lblAgradecimento" alignment="CENTER" maxWidth="Infinity" styleClass="texto"
+                text="Obrigado por participar!" textAlignment="CENTER" wrapText="true" />
+         <HBox alignment="CENTER" styleClass="aviso-box,aviso-final">
+            <Label fx:id="lblSimulacao" alignment="CENTER" maxWidth="Infinity" styleClass="texto"
+                   text="Esta é uma simulação educativa: candidatos e partidos são fictícios e o resultado não tem validade eleitoral."
+                   textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS" />
+         </HBox>
+         <Button fx:id="btnReiniciar" mnemonicParsing="false" onAction="#aoClicarReiniciar"
+                 styleClass="botao-primario" text="VOLTAR AO INÍCIO"
+                 accessibleText="Voltar ao início" />
+      </VBox>
+   </center>
+</BorderPane>

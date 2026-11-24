@@ -1,0 +1,550 @@
+/* =====================================================================
+   URNA CIDADÃ — FOLHA DE ESTILO CENTRALIZADA (Pessoa 5)
+   ---------------------------------------------------------------------
+   Para mudar o visual do projeto inteiro, altere APENAS este arquivo.
+
+   COMO FUNCIONA O TAMANHO (responsividade):
+   - Todos os tamanhos de fonte, margens e larguras estão em "em".
+   - 1em = tamanho da fonte da tela. A classe Responsivo.java recalcula
+     esse tamanho quando a janela muda, e tudo escala junto.
+   - Evite usar "px" para tamanhos de layout, senão aquele elemento
+     deixa de acompanhar o redimensionamento.
+   ===================================================================== */
+
+/* ---------- 1. PALETA E FONTE (variáveis herdadas pelos filhos) ---------- */
+.urna-tela {
+    /* Verde (títulos e botões principais) */
+    -urna-verde:         #00843D;
+    -urna-verde-escuro:  #00602B;
+    /* Amarelo (detalhes e elementos decorativos — NÃO usar como cor de texto sobre branco) */
+    -urna-amarelo:       #FFD500;
+    -urna-amarelo-claro: #FFF6CC;
+    /* Azul (elementos complementares) */
+    -urna-azul:          #1B4F9C;
+    -urna-azul-escuro:   #002776;
+    -urna-azul-claro:    #E8EEF9;
+    /* Neutros */
+    -urna-fundo:         #FFFFFF;
+    -urna-fundo-suave:   #F3F6F4;
+    -urna-borda:         #D6DDD8;
+    -urna-texto:         #1F2937;
+    -urna-texto-suave:   #4B5563;
+    /* Mensagens de status */
+    -urna-erro:          #B42318;
+    -urna-erro-claro:    #FDECEA;
+    -urna-sucesso:       #00843D;
+    -urna-sucesso-claro: #E6F4EC;
+
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    /* Valor padrão; Responsivo.java sobrescreve em tempo de execução. */
+    -fx-font-size: 16px;
+}
+
+.fundo-claro {
+    -fx-background-color: -urna-fundo;
+}
+
+.urna-tela .label {
+    -fx-text-fill: -urna-texto;
+}
+
+/* ---------- 2. FAIXA DECORATIVA (verde / amarelo / azul) ---------- */
+.faixa-topo {
+    -fx-pref-height: 0.5em;
+    -fx-min-height: 0.5em;
+    -fx-max-height: 0.5em;
+}
+.faixa-verde   { -fx-background-color: -urna-verde; }
+.faixa-amarela { -fx-background-color: -urna-amarelo; }
+.faixa-azul    { -fx-background-color: -urna-azul; }
+
+/* ---------- 3. TIPOGRAFIA ---------- */
+.titulo-principal {
+    -fx-font-size: 3.2em;
+    -fx-font-weight: bold;
+    -fx-text-fill: -urna-verde-escuro;
+}
+.urna-tela .titulo-principal { -fx-text-fill: -urna-verde-escuro; }
+
+.subtitulo {
+    -fx-font-size: 1.35em;
+    -fx-font-weight: bold;
+    -fx-text-fill: -urna-azul;
+}
+.urna-tela .subtitulo { -fx-text-fill: -urna-azul; }
+
+.texto {
+    -fx-font-size: 1.05em;
+}
+.texto-suave {
+    -fx-font-size: 0.9em;
+}
+.urna-tela .texto-suave { -fx-text-fill: -urna-texto-suave; }
+
+.titulo-secao {
+    -fx-font-size: 1.1em;
+    -fx-font-weight: bold;
+}
+.urna-tela .titulo-secao { -fx-text-fill: -urna-azul; }
+
+.rotulo-campo {
+    -fx-font-size: 0.85em;
+    -fx-font-weight: bold;
+}
+.urna-tela .rotulo-campo { -fx-text-fill: -urna-texto-suave; }
+
+/* ---------- 4. CARTÕES ---------- */
+.cartao {
+    -fx-background-color: white;
+    -fx-background-radius: 0.8em;
+    -fx-border-color: -urna-borda;
+    -fx-border-radius: 0.8em;
+    -fx-border-width: 1;
+    -fx-padding: 1em 1.2em 1em 1.2em;
+    -fx-effect: dropshadow(gaussian, rgba(17, 24, 39, 0.10), 10, 0, 0, 2);
+}
+
+/* Aviso importante (candidatos fictícios) */
+.aviso-box {
+    -fx-background-color: -urna-amarelo-claro;
+    -fx-background-radius: 0.6em;
+    -fx-border-color: transparent transparent transparent -urna-amarelo;
+    -fx-border-width: 0 0 0 0.4em;
+    -fx-padding: 0.8em 1em 0.8em 1em;
+}
+.aviso-icone {
+    -fx-min-width: 1.8em;
+    -fx-min-height: 1.8em;
+    -fx-max-width: 1.8em;
+    -fx-max-height: 1.8em;
+    -fx-alignment: center;
+    -fx-background-color: -urna-amarelo;
+    -fx-background-radius: 2em;
+    -fx-font-weight: bold;
+}
+.urna-tela .aviso-icone { -fx-text-fill: -urna-azul-escuro; }
+
+/* Orientação (azul claro) */
+.orientacao-box {
+    -fx-background-color: -urna-azul-claro;
+    -fx-background-radius: 0.6em;
+    -fx-border-color: transparent transparent transparent -urna-azul;
+    -fx-border-width: 0 0 0 0.4em;
+    -fx-padding: 0.8em 1em 0.8em 1em;
+}
+
+/* ---------- 5. BOTÕES ---------- */
+.botao-primario {
+    -fx-background-color: -urna-verde;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0.5em;
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 0.7em 2.4em 0.7em 2.4em;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 96, 43, 0.35), 8, 0.1, 0, 3);
+}
+.botao-primario:hover   { -fx-background-color: -urna-verde-escuro; }
+.botao-primario:pressed { -fx-background-color: -urna-verde-escuro; -fx-translate-y: 1; }
+/* Foco visível para navegação por teclado (acessibilidade) */
+.botao-primario:focused {
+    -fx-border-color: -urna-azul;
+    -fx-border-width: 0.18em;
+    -fx-border-radius: 0.5em;
+    -fx-border-insets: -0.25em;
+}
+
+.botao-secundario {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0.5em;
+    -fx-border-color: -urna-azul;
+    -fx-border-width: 0.15em;
+    -fx-border-radius: 0.5em;
+    -fx-font-size: 1.1em;
+    -fx-font-weight: bold;
+    -fx-text-fill: -urna-azul;
+    -fx-padding: 0.55em 1.8em 0.55em 1.8em;
+    -fx-cursor: hand;
+}
+.botao-secundario:hover   { -fx-background-color: -urna-azul-claro; }
+.botao-secundario:focused {
+    -fx-border-color: -urna-azul-escuro;
+    -fx-border-width: 0.22em;
+}
+
+/* ---------- 6. ILUSTRAÇÃO DA URNA (feita só com formas, sem imagens) ---------- */
+.urna-ilustracao-corpo {
+    -fx-background-color: linear-gradient(to bottom, #E5E7EB, #C9CED6);
+    -fx-background-radius: 1em;
+    -fx-border-color: #9AA3AF;
+    -fx-border-radius: 1em;
+    -fx-border-width: 0.15em;
+    -fx-padding: 1em;
+    -fx-effect: dropshadow(gaussian, rgba(17, 24, 39, 0.22), 14, 0, 0, 4);
+}
+.urna-ilustracao-visor {
+    -fx-background-color: white;
+    -fx-background-radius: 0.4em;
+    -fx-border-color: -urna-azul;
+    -fx-border-width: 0.2em;
+    -fx-border-radius: 0.4em;
+    -fx-pref-width: 8em;
+    -fx-pref-height: 8em;
+}
+.urna-ilustracao-visor-faixa {
+    -fx-background-color: -urna-amarelo;
+    -fx-pref-height: 0.8em;
+    -fx-min-height: 0.8em;
+    -fx-max-height: 0.8em;
+}
+.urna-ilustracao-linha {
+    -fx-background-color: -urna-borda;
+    -fx-background-radius: 0.2em;
+    -fx-pref-height: 0.5em;
+    -fx-min-height: 0.5em;
+    -fx-max-height: 0.5em;
+}
+.urna-ilustracao-teclado {
+    -fx-background-color: #1F2937;
+    -fx-background-radius: 0.5em;
+    -fx-padding: 0.6em;
+}
+.urna-ilustracao-tecla {
+    -fx-background-color: #4B5563;
+    -fx-background-radius: 0.25em;
+    -fx-pref-width: 1.5em;
+    -fx-pref-height: 1em;
+}
+.urna-ilustracao-acao {
+    -fx-background-radius: 0.25em;
+    -fx-pref-width: 1.5em;
+    -fx-pref-height: 0.8em;
+}
+.acao-branco   { -fx-background-color: white; }
+.acao-corrige  { -fx-background-color: -urna-amarelo; }
+.acao-confirma { -fx-background-color: -urna-verde; }
+
+/* ---------- 7. TELA INICIAL ---------- */
+.cargo-item {
+    -fx-background-color: -urna-fundo-suave;
+    -fx-background-radius: 0.6em;
+    -fx-border-color: -urna-borda;
+    -fx-border-radius: 0.6em;
+    -fx-padding: 0.7em 0.9em 0.7em 0.9em;
+}
+.cargo-ordem {
+    -fx-min-width: 2em;
+    -fx-min-height: 2em;
+    -fx-max-width: 2em;
+    -fx-max-height: 2em;
+    -fx-alignment: center;
+    -fx-background-color: -urna-verde;
+    -fx-background-radius: 2em;
+    -fx-font-weight: bold;
+}
+.urna-tela .cargo-ordem { -fx-text-fill: white; }
+.cargo-nome {
+    -fx-font-weight: bold;
+}
+.passo-numero {
+    -fx-min-width: 1.6em;
+    -fx-min-height: 1.6em;
+    -fx-max-width: 1.6em;
+    -fx-max-height: 1.6em;
+    -fx-alignment: center;
+    -fx-background-color: -urna-azul;
+    -fx-background-radius: 2em;
+    -fx-font-size: 0.85em;
+    -fx-font-weight: bold;
+}
+.urna-tela .passo-numero { -fx-text-fill: white; }
+
+/* ---------- 8. TELA DE DADOS DO CANDIDATO ---------- */
+.contexto-topo {
+    -fx-font-size: 0.8em;
+    -fx-font-weight: bold;
+}
+.urna-tela .contexto-topo { -fx-text-fill: -urna-texto-suave; }
+
+.linha-divisoria {
+    -fx-background-color: -urna-borda;
+    -fx-pref-height: 0.1em;
+    -fx-min-height: 0.1em;
+    -fx-max-height: 0.1em;
+}
+.seu-voto-para {
+    -fx-font-size: 0.9em;
+    -fx-font-weight: bold;
+}
+.urna-tela .seu-voto-para { -fx-text-fill: -urna-texto-suave; }
+
+.cargo-destaque {
+    -fx-font-size: 1.9em;
+    -fx-font-weight: bold;
+}
+.urna-tela .cargo-destaque { -fx-text-fill: -urna-verde-escuro; }
+
+.digito-caixa {
+    -fx-min-width: 1.5em;
+    -fx-min-height: 1.8em;
+    -fx-alignment: center;
+    -fx-font-size: 2em;
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-border-color: -urna-texto;
+    -fx-border-width: 0.07em;
+}
+.valor-nome {
+    -fx-font-size: 1.9em;
+    -fx-font-weight: bold;
+}
+.valor-partido {
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+}
+.urna-tela .valor-partido { -fx-text-fill: -urna-azul; }
+
+.foto-moldura {
+    -fx-background-color: -urna-fundo-suave;
+    -fx-border-color: -urna-texto;
+    -fx-border-width: 0.1em;
+    -fx-pref-width: 10em;
+    -fx-pref-height: 12.5em;
+    -fx-min-width: 10em;
+    -fx-min-height: 12.5em;
+    -fx-max-width: 10em;
+    -fx-max-height: 12.5em;
+}
+.foto-avatar {
+    /* "em" aqui é relativo à fonte do próprio avatar (1.8em), por isso 3em ≈ 86px */
+    -fx-min-width: 3em;
+    -fx-min-height: 3em;
+    -fx-max-width: 3em;
+    -fx-max-height: 3em;
+    -fx-alignment: center;
+    -fx-background-color: -urna-azul-claro;
+    -fx-background-radius: 3em;
+    -fx-border-color: -urna-azul;
+    -fx-border-width: 0.05em;
+    -fx-border-radius: 3em;
+    -fx-font-size: 1.8em;
+    -fx-font-weight: bold;
+}
+.urna-tela .foto-avatar { -fx-text-fill: -urna-azul; }
+.foto-legenda {
+    -fx-font-size: 0.75em;
+    -fx-font-weight: bold;
+}
+.urna-tela .foto-legenda { -fx-text-fill: -urna-texto-suave; }
+
+/* ---------- 9. TELA DE MENSAGENS (sobreposição) ---------- */
+.mensagem-overlay {
+    -fx-background-color: rgba(17, 24, 39, 0.55);
+}
+.mensagem-cartao {
+    -fx-background-color: white;
+    -fx-background-radius: 0.8em;
+    -fx-border-color: -urna-azul;
+    -fx-border-radius: 0.8em;
+    -fx-border-width: 0.2em;
+    -fx-padding: 1.6em 2em 1.6em 2em;
+    -fx-pref-width: 30em;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 18, 0, 0, 6);
+}
+.mensagem-icone {
+    -fx-min-width: 2.6em;
+    -fx-min-height: 2.6em;
+    -fx-max-width: 2.6em;
+    -fx-max-height: 2.6em;
+    -fx-alignment: center;
+    -fx-background-radius: 3em;
+    -fx-font-size: 1.6em;
+    -fx-font-weight: bold;
+}
+.mensagem-titulo {
+    -fx-font-size: 1.15em;
+    -fx-font-weight: bold;
+}
+.urna-tela .mensagem-titulo { -fx-text-fill: -urna-texto-suave; }
+.mensagem-texto {
+    -fx-font-size: 1.4em;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+/* Variações por tipo (a classe é trocada por MensagemController) */
+.msg-informacao { -fx-border-color: -urna-azul; }
+.msg-informacao .mensagem-icone { -fx-background-color: -urna-azul-claro; }
+.urna-tela .msg-informacao .mensagem-icone { -fx-text-fill: -urna-azul; }
+
+.msg-aviso { -fx-border-color: -urna-amarelo; }
+.msg-aviso .mensagem-icone { -fx-background-color: -urna-amarelo-claro; }
+.urna-tela .msg-aviso .mensagem-icone { -fx-text-fill: -urna-azul-escuro; }
+
+.msg-erro { -fx-border-color: -urna-erro; }
+.msg-erro .mensagem-icone { -fx-background-color: -urna-erro-claro; }
+.urna-tela .msg-erro .mensagem-icone { -fx-text-fill: -urna-erro; }
+
+.msg-sucesso { -fx-border-color: -urna-sucesso; }
+.msg-sucesso .mensagem-icone { -fx-background-color: -urna-sucesso-claro; }
+.urna-tela .msg-sucesso .mensagem-icone { -fx-text-fill: -urna-sucesso; }
+
+.msg-pergunta { -fx-border-color: -urna-azul; }
+.msg-pergunta .mensagem-icone { -fx-background-color: -urna-azul-claro; }
+.urna-tela .msg-pergunta .mensagem-icone { -fx-text-fill: -urna-azul; }
+
+/* ---------- 10. TELA FINAL ---------- */
+.palavra-fim {
+    -fx-font-size: 8em;
+    -fx-font-weight: bold;
+}
+.urna-tela .palavra-fim { -fx-text-fill: -urna-verde-escuro; }
+.marca-nome {
+    -fx-font-size: 1.1em;
+    -fx-font-weight: bold;
+}
+.urna-tela .marca-nome { -fx-text-fill: -urna-azul; }
+.mensagem-final {
+    -fx-font-size: 1.6em;
+    -fx-font-weight: bold;
+}
+
+/* =====================================================================
+   11. LAYOUT (espaçamentos e larguras de cada tela, todos em "em")
+   ===================================================================== */
+
+/* --- Tela inicial --- */
+.layout-colunas {
+    -fx-spacing: 3em;
+    -fx-padding: 1.5em 2.5em 1.5em 2.5em;
+}
+.coluna-esquerda {
+    -fx-spacing: 1.2em;
+    -fx-pref-width: 22em;
+    -fx-min-width: 22em;
+    -fx-max-width: 22em;
+}
+.coluna-direita {
+    -fx-spacing: 1em;
+    -fx-pref-width: 40em;
+    -fx-max-width: 44em;
+}
+.bloco-orientacoes { -fx-spacing: 0.6em; }
+.linha-passo       { -fx-spacing: 0.7em; }
+.bloco-cargos      { -fx-spacing: 0.5em; }
+.linha-cargos      { -fx-spacing: 0.8em; }
+.cargo-item        { -fx-spacing: 0.7em; }
+
+.urna-ilustracao-corpo           { -fx-spacing: 0.8em; }
+.urna-ilustracao-visor-conteudo  { -fx-spacing: 0.5em; -fx-padding: 0.8em; }
+.urna-ilustracao-teclado         { -fx-spacing: 0.5em; }
+.urna-ilustracao-grade           { -fx-hgap: 0.3em; -fx-vgap: 0.3em; }
+.urna-ilustracao-acoes           { -fx-spacing: 0.3em; }
+
+/* --- Tela de dados do candidato --- */
+.dados-cabecalho { -fx-spacing: 0.4em; -fx-padding: 0.7em 1.5em 0 1.5em; }
+.dados-conteudo  { -fx-spacing: 0.2em; -fx-padding: 0.8em 1.5em 0.5em 1.5em; }
+.dados-corpo     { -fx-spacing: 2em;   -fx-padding: 0.8em 0 0 0; }
+.dados-campos    { -fx-spacing: 0.9em; }
+.campo           { -fx-spacing: 0.2em; }
+.caixas-numero   { -fx-spacing: 0.35em; }
+.dados-foto      { -fx-spacing: 0.4em; }
+.foto-placeholder { -fx-spacing: 0.6em; }
+.dados-rodape    { -fx-padding: 0.5em 1.5em 1.2em 1.5em; }
+
+/* --- Mensagens --- */
+.mensagem-cartao { -fx-spacing: 0.7em; }
+.mensagem-botoes { -fx-spacing: 1em; -fx-padding: 0.8em 0 0 0; }
+.mensagem-botoes .botao-primario {
+    -fx-font-size: 1.1em;
+    -fx-padding: 0.55em 1.8em 0.55em 1.8em;
+}
+.mensagem-titulo, .mensagem-texto, .mensagem-final { -fx-alignment: center; }
+
+/* --- Tela final --- */
+.final-conteudo { -fx-spacing: 0.8em; -fx-padding: 1em 3em 1.5em 3em; }
+.aviso-final    { -fx-max-width: 38em; }
+
+/* =====================================================================
+   12. URNA PRINCIPAL (Pessoa 4): corpo, visor, teclado e área de digitação
+   ===================================================================== */
+.urna-area  { -fx-padding: 1.2em 1.5em 1.5em 1.5em; }
+
+.urna-corpo {
+    -fx-spacing: 1.2em;
+    -fx-padding: 1.2em;
+    -fx-background-color: linear-gradient(to bottom, #E5E7EB, #C9CED6);
+    -fx-background-radius: 1.2em;
+    -fx-border-color: #9AA3AF;
+    -fx-border-radius: 1.2em;
+    -fx-border-width: 0.15em;
+    -fx-effect: dropshadow(gaussian, rgba(17, 24, 39, 0.25), 16, 0, 0, 5);
+}
+.urna-visor {
+    -fx-background-color: white;
+    -fx-background-radius: 0.3em;
+    -fx-border-color: #6B7280;
+    -fx-border-width: 0.2em;
+    -fx-border-radius: 0.3em;
+}
+
+/* --- área de digitação (dentro do visor) --- */
+.digitacao   { -fx-spacing: 0.4em; -fx-padding: 1em 1.5em 1em 1.5em; }
+.campo-numero { -fx-padding: 0.8em 0 0.4em 0; }
+.aviso-branco { -fx-font-size: 2.2em; -fx-font-weight: bold; }
+.urna-tela .aviso-branco { -fx-text-fill: -urna-azul-escuro; }
+.digito-ativo { -fx-border-color: -urna-verde; -fx-border-width: 0.14em; }
+.urna-tela .dica-erro { -fx-text-fill: -urna-erro; }
+
+/* --- painel do teclado --- */
+.urna-teclado-painel {
+    -fx-background-color: #1F2937;
+    -fx-background-radius: 0.8em;
+    -fx-padding: 1.2em;
+    -fx-spacing: 1.2em;
+    -fx-pref-width: 21em;
+    -fx-min-width: 21em;
+    -fx-max-width: 21em;
+}
+.teclado-cabecalho { -fx-spacing: 0.5em; }
+.teclado-estrela   { -fx-font-size: 1.1em; }
+.urna-tela .teclado-estrela { -fx-text-fill: -urna-amarelo; }
+.teclado-titulo    { -fx-font-size: 0.95em; -fx-font-weight: bold; }
+.urna-tela .teclado-titulo { -fx-text-fill: white; }
+.teclado-grade     { -fx-hgap: 0.8em; -fx-vgap: 0.8em; }
+.teclado-acoes     { -fx-spacing: 0.6em; }
+
+.tecla-numerica {
+    -fx-background-color: #374151;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0.4em;
+    -fx-text-fill: white;
+    -fx-font-size: 1.5em;
+    -fx-font-weight: bold;
+    -fx-pref-width: 3em;
+    -fx-pref-height: 2.2em;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 4, 0, 0, 2);
+}
+.tecla-numerica:hover   { -fx-background-color: #4B5563; }
+.tecla-numerica:pressed { -fx-background-color: #111827; -fx-translate-y: 1; }
+
+.tecla-acao {
+    -fx-background-insets: 0;
+    -fx-background-radius: 0.4em;
+    -fx-font-size: 0.8em;
+    -fx-font-weight: bold;
+    -fx-pref-width: 7em;
+    -fx-pref-height: 3.4em;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 4, 0, 0, 2);
+}
+.tecla-acao:pressed { -fx-translate-y: 1; }
+.tecla-branco   { -fx-background-color: white;        -fx-text-fill: #1F2937; }
+.tecla-branco:hover   { -fx-background-color: #E5E7EB; }
+.tecla-corrige  { -fx-background-color: -urna-amarelo; -fx-text-fill: #1F2937; }
+.tecla-corrige:hover  { -fx-background-color: #E6BF00; }
+.tecla-confirma { -fx-background-color: -urna-verde;   -fx-text-fill: white; }
+.tecla-confirma:hover { -fx-background-color: -urna-verde-escuro; }

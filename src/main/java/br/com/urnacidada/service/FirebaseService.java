@@ -10,8 +10,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +22,9 @@ import java.util.concurrent.TimeoutException;
 
 public class FirebaseService {
 
-    private static final String CAMINHO_CHAVE = "config/serviceAccountKey.json";
+    /** Pasta (ao lado do pom.xml) onde fica a chave da conta de serviço. Ela NÃO vai para o Git. */
+    private static final String PASTA_CONFIG = "config";
+    private static final String CHAVE_PADRAO = PASTA_CONFIG + "/serviceAccountKey.json";
     private static final int TIMEOUT_SEGUNDOS = 10;
 
     private Firestore db;
@@ -32,12 +37,22 @@ public class FirebaseService {
     }
 
     // CONEXÃO
-    public void conectar() throws FirebaseServiceException {
+    /**
+     * Conecta ao Firebase (uma única vez por programa). A chave da conta de serviço é procurada, nesta ordem:
+     * <ol>
+     *   <li>propriedade {@code -Durna.firebase.chave=caminho/da/chave.json}</li>
+     *   <li>variável de ambiente {@code URNA_FIREBASE_CHAVE} ou {@code GOOGLE_APPLICATION_CREDENTIALS}</li>
+     *   <li>{@code config/serviceAccountKey.json}</li>
+     *   <li>qualquer {@code config/*serviceAccountKey*.json} (nome original baixado do Firebase)</li>
+     * </ol>
+     */
+    public synchronized void conectar() throws FirebaseServiceException {
+        Path chave = localizarChave();
         try {
             if (FirebaseApp.getApps().isEmpty()) {
-                try (FileInputStream chave = new FileInputStream(CAMINHO_CHAVE)) {
+                try (InputStream entrada = Files.newInputStream(chave)) {
                     FirebaseOptions options = FirebaseOptions.builder()
-                            .setCredentials(GoogleCredentials.fromStream(chave))
+                            .setCredentials(GoogleCredentials.fromStream(entrada))
                             .build();
                     FirebaseApp.initializeApp(options);
                 }
@@ -45,10 +60,39 @@ public class FirebaseService {
             db = FirestoreClient.getFirestore();
         } catch (IOException e) {
             throw new FirebaseServiceException(
-                "Não foi possível ler a chave do Firebase em " + CAMINHO_CHAVE, e);
+                "Não foi possível ler a chave do Firebase em " + chave.toAbsolutePath(), e);
         } catch (Exception e) {
             throw new FirebaseServiceException("Falha ao conectar ao Firebase.", e);
         }
+    }
+
+    /** Devolve o caminho da chave da conta de serviço ou lança erro explicando onde colocá-la. */
+    static Path localizarChave() throws FirebaseServiceException {
+        List<String> candidatos = new ArrayList<>();
+        candidatos.add(System.getProperty("urna.firebase.chave"));
+        candidatos.add(System.getenv("URNA_FIREBASE_CHAVE"));
+        candidatos.add(System.getenv("GOOGLE_APPLICATION_CREDENTIALS"));
+        candidatos.add(CHAVE_PADRAO);
+
+        for (String caminho : candidatos) {
+            if (caminho != null && !caminho.isBlank() && Files.isRegularFile(Paths.get(caminho))) {
+                return Paths.get(caminho);
+            }
+        }
+
+        // Nome original baixado do Firebase (ex.: urna-eletronica-2026-firebase-adminsdk-xxxx.json)
+        try (var arquivos = Files.newDirectoryStream(Paths.get(PASTA_CONFIG), "*serviceAccountKey*.json")) {
+            for (Path arquivo : arquivos) {
+                return arquivo;
+            }
+        } catch (IOException e) {
+            // pasta config/ inexistente: cai na mensagem abaixo
+        }
+
+        throw new FirebaseServiceException(
+            "Chave do Firebase não encontrada. Salve o arquivo da conta de serviço como "
+            + Paths.get(CHAVE_PADRAO).toAbsolutePath()
+            + " (veja docs/CONFIGURAR_FIREBASE.md).", null);
     }
 
     // CONSULTA DE CANDIDATOS
